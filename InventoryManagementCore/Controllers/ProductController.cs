@@ -6,6 +6,7 @@ using InventoryManagementCore.Models.Interfaces;
 using InventoryManagementCore.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 namespace InventoryManagementCore.Controllers
 {
@@ -22,13 +23,21 @@ namespace InventoryManagementCore.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public ViewResult Create()
-        {
-            var Categories = _pdtRepo.GetCategories();
-            ViewData["CategoryId"] = new SelectList(Categories, "CategoryId", "CategoryName");
+        //[HttpGet]
+        //public ViewResult Create()
+        //{
+        //    var Categories = _pdtRepo.GetCategories();
+        //    ViewData["CategoryId"] = new SelectList(Categories, "CategoryId", "CategoryName");
 
             
+        //    return View();
+        //}
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var categories = _pdtRepo.GetCategories();
+            ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -37,6 +46,7 @@ namespace InventoryManagementCore.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Response.WriteAsync(p.Category.CategoryName);
                 Product pdt = _pdtRepo.AddProduct(p);
                 return RedirectToAction("details", new { id = pdt.ProductId });
             }

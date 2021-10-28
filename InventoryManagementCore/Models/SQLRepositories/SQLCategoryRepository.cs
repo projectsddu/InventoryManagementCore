@@ -15,16 +15,16 @@ namespace InventoryManagementCore.Models.SQLRepositories
             this.context = context;
         }
 
-        public Category AddCategory(Category c)
+        public Category AddCategory(Category category)
         {
-            this.context.Add(c);
-            this.context.SaveChanges();
-            return c;
+            context.Categories.Add(category);
+            context.SaveChanges();
+            return category;
         }
 
-        public Category DeleteCategory(int id)
+        public Category DeleteCategory(int Id)
         {
-            Category c = context.Categories.Find(id);
+            Category c = context.Categories.Find(Id);
             if (c != null)
             {
                 context.Categories.Remove(c);
@@ -38,22 +38,17 @@ namespace InventoryManagementCore.Models.SQLRepositories
             return context.Categories;
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public Category GetCategory(int Id)
         {
-            return context.Products;
+            return context.Categories.Find(Id);
         }
 
-        public Category GetCategory(int id)
+        public Category UpdateCategory(Category category)
         {
-            return context.Categories.Find(id);
-        }
-
-        public Category UpdateCategory(Category c)
-        {
-            var cat = context.Categories.Attach(c);
-            cat.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            var newCategory = context.Categories.Attach(category);
+            newCategory.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
-            return c;
+            return category;
         }
     }
 }
