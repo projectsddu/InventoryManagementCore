@@ -1,10 +1,71 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+}
+<style>
+    .borderMe{
+        border:1px solid black;
+    }
+    .fb-1000
+    {
+        font-weight:300;
+        font-size:2em;
+    }
+    .bg1 {
+        /*background: linear-gradient(135deg, #C56CD6 0%,#3425AF 100%);*/
+        /*background: linear-gradient(135deg, #f02fc2 0%,#6094ea 100%);*/
+        /*background: linear-gradient(135deg, #17ead9 0%,#6078ea 100%);*/
+        background: linear-gradient(135deg, #17ead9 0%,#7f95fa 100%);
+    }
+    .bg2 {
+        /*background: linear-gradient(135deg, #FF57B9 0%,#A704FD 100%);*/
+        /*background: linear-gradient(135deg, #65799b 0%,#5e2563 100%);*/
+        /*background: linear-gradient(135deg, #622774 0%,#c53364 100%);*/
+        /*background: linear-gradient(135deg, #7117ea 0%,#ea6060 100%);*/
+        background: linear-gradient(135deg, #184e68 0%,#57ca85 100%);
+    }
+    .bg3 {
+        background: linear-gradient(135deg, #0FF0B3 0%,#036ED9 100%);
+    }
+</style>
+<div class="">
+    <div class="col">
+        <div class="row">
+            <div class="col-4 " style="display:flex;justify-content:center;align-content:center">
+                <div class="shadow-xl bg2 opacity-90" style="width:100%;padding:17%;color:white">
+                    <h1 class="display-4 fb-1000"><b>Welcome Back,</b></h1>
+                    <h3><b>@User.Identity.Name</b></h3>
+                </div>
+            </div>
+            <div class="col-4" style="display:flex;justify-content:center;align-content:center">
+                <div class="shadow-xl bg2 opacity-90" style="width:100%;padding:17%;color:white">
+                    <h1 class="display-4 fb-1000"><b>Total Sales</b></h1>
+                    <h3><b>$25000</b></h3>
+                </div>
+            </div>
+            <div class="col-4" style="display:flex;justify-content:center;align-content:center">
+                <div class="shadow-xl bg2 opacity-90" style="width:100%;padding:17%;color:white">
+                    <h1 class="display-4 fb-1000"><b>Customers</b></h1>
+                    <h3><b>1500</b></h3>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="
+    align-items: center;
+    justify-content: center;
+    margin-top:2%
+    ">
+            <div class="row">
+                <ul class="list-group" style="width:1080px">
+                    <li class="list-group-item " style="background-color: #01d639c2; color: white " aria-current="true"><h4>Recently Added Products</h4></li>
+                    <li class="list-group-item">Office Chairs </li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 
