@@ -27,6 +27,11 @@ namespace InventoryManagementCore.Models.Models
         [Display(Name = "Selling Price")]
         public int SellingPrice { get; set; }
 
+        //[Required(ErrorMessage = "Photo is required!!")]
+        //[Display(Name = "Photograph")]
+        //public string PhotoPath { get; set; }
+
+
         public int CategoryId { get; set; }
         public Category Category { get; set; }
     }
