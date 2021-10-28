@@ -8,6 +8,7 @@ namespace InventoryManagementCore.Models.Models
 {
     public class Category
     {
+        // Category model starts here
         [Key]
         public int CategoryId { get; set; }
 
