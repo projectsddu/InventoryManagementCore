@@ -1,4 +1,6 @@
 using InventoryManagementCore.Models;
+using InventoryManagementCore.Models.Interfaces;
+using InventoryManagementCore.Models.SQLRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,8 @@ namespace InventoryManagementCore
             services.AddControllersWithViews();
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
+            services.AddScoped<IProductRepository, SQLProductRepository>();
+            services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
             services.AddControllersWithViews();
         }
 

@@ -17,5 +17,10 @@ namespace InventoryManagementCore.Models.Models
         public string CategoryName { get; set; }
 
         public ICollection<Product> Products { get; set; }
+
+        public override string ToString()
+        {
+            return this.CategoryName;
+        }
     }
 }
