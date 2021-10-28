@@ -43,17 +43,20 @@ namespace InventoryManagementCore.Models.SQLRepositories
 
         public IEnumerable<Category> GetCategories()
         {
-            throw new NotImplementedException();
+            return context.Categories;
         }
 
         public Product GetProduct(int Id)
         {
-            throw new NotImplementedException();
+            return context.Products.Include(p => p.Category).FirstOrDefault(m => m.ProductId == Id);
         }
 
         public Product UpdateProduct(Product updatedProduct)
         {
-            throw new NotImplementedException();
+            var product = context.Products.Attach(updatedProduct);
+            product.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return updatedProduct;
         }
     }
 }
