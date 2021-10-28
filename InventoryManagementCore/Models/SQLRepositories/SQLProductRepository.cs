@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InventoryManagementCore.Models.Interfaces;
 using InventoryManagementCore.Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagementCore.Models.SQLRepositories
 {
@@ -22,40 +23,37 @@ namespace InventoryManagementCore.Models.SQLRepositories
             return p;
         }
 
-        public Product DeleteProduct(int id)
+        public Product DeleteProduct(int Id)
         {
-            Product pdt = context.Products.Find(id);
-            if (pdt != null)
+            Product product = context.Products.Find(Id);
+
+            if (product != null)
             {
-                context.Products.Remove(pdt);
+                context.Products.Remove(product);
                 context.SaveChanges();
             }
-            return pdt;
-        }
 
-        
+            return product;
+        }
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return context.Products;
+            return context.Products.Include(p => p.Category);
         }
 
         public IEnumerable<Category> GetCategories()
         {
-            return context.Categories;
+            throw new NotImplementedException();
         }
 
-        public Product GetProduct(int id)
+        public Product GetProduct(int Id)
         {
-            return context.Products.Find(id);
+            throw new NotImplementedException();
         }
 
         public Product UpdateProduct(Product updatedProduct)
         {
-            var pdt = context.Products.Attach(updatedProduct);
-            pdt.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            context.SaveChanges();
-            return updatedProduct;
+            throw new NotImplementedException();
         }
     }
 }

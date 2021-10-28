@@ -8,11 +8,11 @@ namespace InventoryManagementCore.Models.Interfaces
 {
     public interface IProductRepository
     {
-        Product GetProduct(int id);
+        Product GetProduct(int Id);
         IEnumerable<Product> GetAllProducts();
         Product AddProduct(Product p);
         Product UpdateProduct(Product updatedProduct);
-        Product DeleteProduct(int id);
+        Product DeleteProduct(int Id);
         IEnumerable<Category> GetCategories();
     }
 }

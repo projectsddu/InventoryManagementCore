@@ -8,7 +8,6 @@ namespace InventoryManagementCore.Models.Models
 {
     public class Product
     {
-        [Key]
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Product Name is required!!")]

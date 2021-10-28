@@ -8,7 +8,6 @@ namespace InventoryManagementCore.Models.Models
 {
     public class Category
     {
-        // Category model starts here
         [Key]
         public int CategoryId { get; set; }
 
@@ -17,10 +16,5 @@ namespace InventoryManagementCore.Models.Models
         public string CategoryName { get; set; }
 
         public ICollection<Product> Products { get; set; }
-
-        public override string ToString()
-        {
-            return this.CategoryName;
-        }
     }
 }
