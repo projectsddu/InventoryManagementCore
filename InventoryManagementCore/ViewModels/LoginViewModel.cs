@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementCore.ViewModels
 {
-    public class RegisterViewModel
+    public class LoginViewModel
     {
         [Required(ErrorMessage = "Username is required!!")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password",
-            ErrorMessage = "Password and confirmation password do not match!!")]
-        public string ConfirmPassword { get; set; }
+        [Display(Name = "Remember Me!")]
+        public bool RememberMe { get; set; }
     }
 }
