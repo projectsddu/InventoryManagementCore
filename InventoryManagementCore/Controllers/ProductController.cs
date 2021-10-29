@@ -7,15 +7,20 @@ using InventoryManagementCore.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using InventoryManagementCore.ViewModels.Product;
+using System.IO;
 
 namespace InventoryManagementCore.Controllers
 {
     public class ProductController : Controller
     {
         public readonly IProductRepository _pdtRepo;
-        public ProductController(IProductRepository _pdtRepo)
+        public readonly IWebHostEnvironment hostEnvironment;
+        public ProductController(IProductRepository _pdtRepo, IWebHostEnvironment hostEnvironment)
         {
             this._pdtRepo = _pdtRepo;
+            this.hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
@@ -31,17 +36,55 @@ namespace InventoryManagementCore.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public IActionResult Create(ProductCreateViewModel p)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Product pdt = _pdtRepo.AddProduct(p);
+        //        return RedirectToAction("details", new { id = pdt.ProductId });
+        //    }
+        //    return View();
+        //}
+
+
+
+
         [HttpPost]
-        public IActionResult Create(Product p)
+        public IActionResult Create(ProductCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                //Response.WriteAsync(p.Category.CategoryName);
-                Product pdt = _pdtRepo.AddProduct(p);
-                return RedirectToAction("details", new { id = pdt.ProductId });
+                string uniqueFileName = null;
+
+               
+                if (model.ProductPhoto != null)
+                {
+                    string uploadsFolder = Path.Combine(hostEnvironment.WebRootPath, "Images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" +model.ProductPhoto.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.ProductPhoto.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                Product newProduct = new Product()
+                {
+                    ProductName = model.ProductName,
+                    BuyingPrice = model.BuyingPrice,
+                    SellingPrice = model.SellingPrice,
+                    Quantity = model.Quantity,
+                    CategoryId = model.CategoryId,
+                    Category = model.Category,
+                    ProductPhotoPath = uniqueFileName
+                };
+                _pdtRepo.AddProduct(newProduct);
+                return RedirectToAction("details", new { id = newProduct.ProductId });
             }
             return View();
         }
+
+
+
+
 
         public ViewResult Details(int id)
         {

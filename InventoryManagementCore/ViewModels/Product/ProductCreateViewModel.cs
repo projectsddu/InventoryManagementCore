@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using InventoryManagementCore.Models.Models;
+using Microsoft.AspNetCore.Http;
 
-namespace InventoryManagementCore.Models.Models
+namespace InventoryManagementCore.ViewModels.Product
 {
-    public class Product
+    public class ProductCreateViewModel
     {
-        public int ProductId { get; set; }
-
         [Required(ErrorMessage = "Product Name is required!!")]
         [Display(Name = "Product Name")]
         public string ProductName { get; set; }
@@ -27,7 +27,7 @@ namespace InventoryManagementCore.Models.Models
         public int SellingPrice { get; set; }
 
         [Display(Name = "Product Image")]
-        public string ProductPhotoPath { get; set; }
+        public IFormFile ProductPhoto { get; set; }
 
         [Display(Name = "Category Name")]
         public int CategoryId { get; set; }
