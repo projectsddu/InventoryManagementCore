@@ -9,10 +9,12 @@ namespace InventoryManagementCore.ViewModels
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Username is required!!")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string password { get; set; }
 
         [Display(Name = "Remember Me!")]
