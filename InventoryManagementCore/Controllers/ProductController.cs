@@ -23,16 +23,6 @@ namespace InventoryManagementCore.Controllers
             return View(model);
         }
 
-        //[HttpGet]
-        //public ViewResult Create()
-        //{
-        //    var Categories = _pdtRepo.GetCategories();
-        //    ViewData["CategoryId"] = new SelectList(Categories, "CategoryId", "CategoryName");
-
-            
-        //    return View();
-        //}
-
         [HttpGet]
         public IActionResult Create()
         {

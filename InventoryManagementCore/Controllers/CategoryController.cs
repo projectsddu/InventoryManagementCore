@@ -45,7 +45,7 @@ namespace InventoryManagementCore.Controllers
             if (cat == null)
             {
                 Response.StatusCode = 404;
-                return View("Product Not Found", id);
+                return View("Category Not Found", id);
             }
             return View(cat);
         }

@@ -6,7 +6,7 @@ using InventoryManagementCore.Models.Models;
 
 namespace InventoryManagementCore.Models.Interfaces
 {
-    interface IBillRepository
+    public interface IBillRepository
     {
         Bill GetBill(int Id);
 
