@@ -30,7 +30,7 @@ namespace InventoryManagementCore.Models.Models
         //[Display(Name = "Photograph")]
         //public string PhotoPath { get; set; }
 
-
+        [Display(Name = "Category Name")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
     }
