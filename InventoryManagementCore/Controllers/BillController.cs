@@ -8,6 +8,12 @@ using InventoryManagementCore.Models.Models;
 
 namespace InventoryManagementCore.Controllers
 {
+    class ProductJSONModel
+    {
+        public int productId { get; set; }
+        public string productName { get; set; }
+        public int sellingPrice { get; set; }
+    }
     public class BillController : Controller
     {
         private readonly IBillRepository _billRepo;
@@ -86,5 +92,29 @@ namespace InventoryManagementCore.Controllers
             }
             return View(model);
         }
-    }
+
+        [HttpPost]
+        public JsonResult fillCustomerDetails(int id)
+        {
+            Customer customer = _custRepo.GetCustomer(id);
+            return Json(customer);
+        }
+
+        [HttpPost]
+
+        public JsonResult fillProductDetails(int id)
+        {
+            Product product = _prodRepo.GetProduct(id);
+
+            ProductJSONModel p = new ProductJSONModel()
+            {
+                productName = product.ProductName,
+                sellingPrice = product.SellingPrice,
+                productId = product.ProductId
+            };
+
+            return Json(p);
+            
+        }
+     }
 }

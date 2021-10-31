@@ -1,6 +1,11 @@
 ﻿body {
 }
 
+.bill-quantity-price-input {
+    border: 1px solid black;
+    width: 20%;
+}
+
 .add-bill-border-container {
     border: 1px solid black;
 }
@@ -35,6 +40,7 @@
     overflow-y: scroll;
     max-height: 120px;
 }
+
 
 /* width */
 ::-webkit-scrollbar {

@@ -15,8 +15,10 @@
         <div class="row">
             <div class="col-6  add-bill-upper-section add-bill-border-container">
                 <div class="add-bill-search-customer">
-                    <input class="form-control search-customer me-2 add-bill-search" style="display: inline; width: 92%" type="search" placeholder="Search Customers" aria-label="Search">
-                    <button class="btn btn-success btn-add-product" style="display: inline;" data-toggle="tooltip" data-placement="top" title="Add New Customer">+</button>
+                    <input class="form-control search-customer me-2 add-bill-search" style="display: inline; width: 92%" type="search" placeholder="Search Customers here" aria-label="Search">
+                    <a asp-action="Create" asp-controller="Customer"> 
+                        <button class="btn btn-success btn-add-product" style="display: inline;" data-toggle="tooltip" data-placement="top" title="Add New Customer">+</button>
+                    </a>
                 </div>
                 <div class="add-bill-customer-overflow mt-3">
                     <ul class="list-group search-customers-list" >
@@ -26,7 +28,7 @@
                                 <li class="list-group-item">
                                                             <p style="display:inline">@cust.CustomerName</p>
                                     <span class="float-right">
-                                        <button id="@cust.CustomerId" class="btn btn-sm btn-primary">Select</button>
+                                        <button id="@cust.CustomerId" class="select-customer btn btn-sm btn-primary">Select</button>
                                     </span>
                                 </li>
 
@@ -38,7 +40,7 @@
 
             <div class="col-6 add-bill-upper-section add-bill-border-container">
                 <div class="">
-                    <input class="form-control search-products me-2 add-bill-search" type="search" placeholder="Search Products" id="products-search" aria-label="Search">
+                    <input class="form-control search-products me-2 add-bill-search" type="search" placeholder="Search Products here" id="products-search" aria-label="Search">
                 </div>
                 <div class="">
                     <div class="add-bill-customer-overflow mt-3">
@@ -50,7 +52,7 @@
                                     <li class="list-group-item">
                                                                     <p style="display:inline">@product.ProductName</p>
                                         <span class="float-right">
-                                            <button id="@product.ProductId" class="btn btn-sm btn-primary">Select</button>
+                                            <button  id="@product.ProductId" class="select-product btn btn-sm btn-primary">Select</button>
                                         </span>
                                     </li>
 
@@ -62,9 +64,46 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row ">
         <div class="col-12 add-bill-border-container">
-            rikin
+            <div class="row">
+                <div class="col-7">
+                    <p class="mt-1">
+                        Customer Name:
+                        <span id="cust-name"></span>
+                    </p>
+                </div>
+                <div class="col-5">
+                    <p class="mt-1">
+                        Phone No:
+                        <span id="cust-phone-no"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        Address:
+                        <span id="cust-address"></span>
+                    </p>
+                </div>
+            </div>
+            
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Sr. No</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Selling Price</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="product-items">
+                    
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
