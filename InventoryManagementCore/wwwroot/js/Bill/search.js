@@ -61,35 +61,61 @@
      $('.select-product').click(function () {
          const id = this.id;
          //console.log(id);
+         
 
          $.ajax({
              url: '/Bill/fillProductDetails/' + id,
              method: 'post',
              success: function (response) {
-                 console.log(response);
+                 //console.log(response);
                  const name = response["productName"];
                  const sellingPrice = response["sellingPrice"];
                  const quantity = 0;
                  const productCount = document.getElementById("product-items").children.length + 1;
-                 console.log($('#product-items'));
+                 //console.log($('#product-items'));
 
                  const productData = `<tr>
                         <th scope="row">${productCount}</th>
                         <td>${name}</td>
-                        <td> <input id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Quantity" value="${quantity}"></td>
-                        <td><input id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"> </td>
-                        <td>0</td>
+                        <td> <input onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Quantity" value="${quantity}"></td>
+                        <td><input onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"> </td>
+                        <td id="total-${productCount}">0</td>
                         <td id="${productCount}"><button class="btn btn-sm btn-danger">Delete</button></td>
                     </tr>`
 
                  $('#product-items').append(productData);
              }
          })
-     })
+     });
+     
+     
  });
 
+function handleFinalTotal() {
+    const parent = document.getElementById("product-items").children
+    var total = 0;
+    var totalQty = 0;
+    $(parent).each((e) => {
+        const childElem = parent[e]
+        const childsChild = childElem.children[4].innerText
+        const qty = childElem.children[2].children[0].value
+        total += parseInt(childsChild)
+        totalQty += parseInt(qty)
+    })
+    document.getElementById("finalTotal").innerText = total
+    document.getElementById("finalQty").innerText = totalQty
+    
+}
+
+function handleChange(idx) {
+    const price = document.getElementById("price-" + idx).value
+    const qty = document.getElementById("qty-" + idx).value
+    const totalElem = document.getElementById("total-" + idx)
+    totalElem.innerText = qty * price
+    handleFinalTotal()
+}
 
 
-
+    
 
 
