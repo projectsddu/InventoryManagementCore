@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InventoryManagementCore.Models.Interfaces;
 using InventoryManagementCore.Models.Models;
+using System.IO;
 
 namespace InventoryManagementCore.Controllers
 {
@@ -115,6 +116,18 @@ namespace InventoryManagementCore.Controllers
 
             return Json(p);
             
+        }
+
+        // not working
+        [HttpGet]
+        public IActionResult makeBill()
+        {
+            var body="";
+            using (var reader = new StreamReader(Request.Body))
+            {
+                body = reader.ReadToEnd();
+            }
+            return Json(body);
         }
      }
 }

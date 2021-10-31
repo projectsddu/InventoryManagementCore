@@ -47,6 +47,7 @@
              url: '/Bill/fillCustomerDetails/' + id,
              success: function (response) {
                  console.log(response);
+                 const customerId = response["customerId"];
                  const name = response["customerName"];
                  const phoneNo = response["customerPhoneNo"];
                  const address = response["customerAddress"];
@@ -54,6 +55,7 @@
                  document.getElementById("cust-name").innerText = name;
                  document.getElementById("cust-phone-no").innerText = phoneNo;
                  document.getElementById("cust-address").innerText = address;
+                 document.getElementById("cust-id").innerText = customerId;
              },
              method: 'post'
          })
@@ -78,8 +80,8 @@
                  const productData = `<tr id="pdt-main-row-${productCount}">
                         <th scope="row" style="display: none">${prodId}</th>
                         <td>${name}</td>
-                        <td> <input onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Qty" value="${quantity}"></td>
-                        <td><input onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"> </td>
+                        <td> <input min="0" onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Qty" value="${quantity}"></td>
+                        <td><input min="0" onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"> </td>
                         <td id="total-${productCount}">0</td>
                         <td id="${productCount}"><button id="${productCount}" onclick="handleDelete(${productCount})" class="pdt-delete btn btn-sm btn-danger">Delete</button></td>
                     </tr>`

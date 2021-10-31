@@ -6,6 +6,7 @@
 
 @*<h1>Create Bill</h1>
     <hr style="border: 2px solid #28a745;" />*@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <link href="~/css/addBill.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -14,8 +15,9 @@
 <script>
 
 </script>
+<div id="errors" style="display: none"></div>
 <div class="product-quantity product-selling-price"></div>
-<div class="col">
+<div class="col mb-4">
     <div class="row-4">
         <div class="row">
             <div class="col-6  add-bill-upper-section add-bill-border-container">
@@ -72,6 +74,7 @@
     <div class="row ">
         <div class="col-12 add-bill-border-container">
             <div class="row">
+                <div id="cust-id" style="display:none">-1</div>
                 <div class="col-9">
                     <p class="mt-1">
                         Customer Name:
@@ -89,17 +92,17 @@
                 <div class="col-9">
                     <p class="mt-1">
                         Address:
-                        <span id="cust-name"></span>
+                        <span id="cust-address"></span>
                     </p>
                 </div>
                 <div class="col-3">
                     <p class="mt-1">
-                        Net Outstanding: 
+                        Net Outstanding:
                         <span id="cust-phone-no"></span>
                     </p>
                 </div>
-                
-                
+
+
             </div>
 
             <table class="table table-hover">
@@ -132,13 +135,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Total Paid</span>
                                     </div>
-                                    <input type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                    <input type="number" min="0" id="totalPaid" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                 </div>
                             </div>
                         </td>
                         <td colspan="3">
                             <div style="display: flex; justify-content: space-evenly">
-                                <button class="btn btn-success">Make Bill</button>
+                                <button onclick="handleMakeBill()" class="btn btn-success">Make Bill</button>
                             </div>
                         </td>
 
@@ -149,3 +152,5 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
