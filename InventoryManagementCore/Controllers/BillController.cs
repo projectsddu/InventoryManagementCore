@@ -11,9 +11,14 @@ namespace InventoryManagementCore.Controllers
     public class BillController : Controller
     {
         private readonly IBillRepository _billRepo;
-        public BillController(IBillRepository _billRepo)
+        private readonly ICustomerRepository _custRepo;
+        private readonly IProductRepository _prodRepo;
+        public BillController(IBillRepository _billRepo, ICustomerRepository _custRepo, 
+            IProductRepository _prodRepo)
         {
             this._billRepo = _billRepo;
+            this._custRepo = _custRepo;
+            this._prodRepo = _prodRepo;
         }
 
         public IActionResult Index()
@@ -25,6 +30,8 @@ namespace InventoryManagementCore.Controllers
         [HttpGet]
         public ViewResult Create()
         {
+            ViewBag.CustomerDetails = _custRepo.GetAllCustomers();
+            ViewBag.ProductDetails = _prodRepo.GetAllProducts();
             return View();
         }
 

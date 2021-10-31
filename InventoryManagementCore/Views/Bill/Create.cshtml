@@ -4,17 +4,78 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create Bill</h1>
-<hr style="border: 2px solid #28a745;" />
+@*<h1>Create Bill</h1>
+    <hr style="border: 2px solid #28a745;" />*@
 
-<div class="row" style="height: 500px;">
+<link href="~/css/addBill.css" rel="stylesheet" />
+
+
+<div class="col">
+    <div class="row-4">
+        <div class="row">
+            <div class="col-6  add-bill-upper-section add-bill-border-container">
+                <div class="add-bill-search-customer">
+                    <input class="form-control me-2 add-bill-search" style="display: inline; width: 92%" type="search" placeholder="Search Customers" aria-label="Search">
+                    <button class="btn btn-success btn-add-product" style="display: inline;" data-toggle="tooltip" data-placement="top" title="Add New Customer">+</button>
+                </div>
+                <div class="add-bill-customer-overflow mt-3">
+                    <ul class="list-group">
+                        @{
+                            foreach (var cust in ViewBag.CustomerDetails)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @cust.CustomerName
+                                    <span>
+                                        <button id="@cust.CustomerId" class="btn btn-sm btn-primary">Select</button>
+                                    </span>
+                                </li>
+
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-6 add-bill-upper-section add-bill-border-container">
+                <div class="">
+                    <input class="form-control me-2 add-bill-search" type="search" placeholder="Search Products" aria-label="Search">
+                </div>
+                <div class="">
+                    <div class="add-bill-customer-overflow mt-3">
+                        <ul class="list-group">
+                            @{
+                                foreach (var product in ViewBag.ProductDetails)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        @product.ProductName
+                                        <span>
+                                            <button id="@product.ProductId" class="btn btn-sm btn-primary">Select</button>
+                                        </span>
+                                    </li>
+
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 add-bill-border-container">
+            rikin
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="row" style="height: 500px;">
     <div class="col-6" style="border: 1px solid black;">
         <div class="row" style="border: 1px solid black; height: 250px;">
             <div class="col">
                 <form class="form-wrapper cf">
-                    <input type="text" class="search" placeholder="  search customer name here" required style="width: 86%; height: 110%">
-                    @*<button type="submit">search</button>*@
-                    <button class="btn btn-success btn-add-product" style="display: inline; margin-bottom: 1%;" data-toggle="tooltip" data-placement="top" title="Add New Customer">+</button><br /><br />
+                    <input type="text" class="search" placeholder="  search customer name here" required style="width: 86%; height: 110%">-->
+<!--<button class="btn btn-success btn-add-product" style="display: inline; margin-bottom: 1%;" data-toggle="tooltip" data-placement="top" title="Add New Customer">+</button><br /><br />
                 </form>
             </div>
         </div>
@@ -27,4 +88,4 @@
     <div class="col-6" style="border: 1px solid black;">
         jenil
     </div>
-</div>
+</div>-->
