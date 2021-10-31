@@ -8,24 +8,24 @@
     <hr style="border: 2px solid #28a745;" />*@
 
 <link href="~/css/addBill.css" rel="stylesheet" />
-
+<script src="~/js/Bill/search.js"></script>
 
 <div class="col">
     <div class="row-4">
         <div class="row">
             <div class="col-6  add-bill-upper-section add-bill-border-container">
                 <div class="add-bill-search-customer">
-                    <input class="form-control me-2 add-bill-search" style="display: inline; width: 92%" type="search" placeholder="Search Customers" aria-label="Search">
+                    <input class="form-control search-customer me-2 add-bill-search" style="display: inline; width: 92%" type="search" placeholder="Search Customers" aria-label="Search">
                     <button class="btn btn-success btn-add-product" style="display: inline;" data-toggle="tooltip" data-placement="top" title="Add New Customer">+</button>
                 </div>
                 <div class="add-bill-customer-overflow mt-3">
-                    <ul class="list-group">
+                    <ul class="list-group search-customers-list" >
                         @{
                             foreach (var cust in ViewBag.CustomerDetails)
                             {
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    @cust.CustomerName
-                                    <span>
+                                <li class="list-group-item">
+                                                            <p style="display:inline">@cust.CustomerName</p>
+                                    <span class="float-right">
                                         <button id="@cust.CustomerId" class="btn btn-sm btn-primary">Select</button>
                                     </span>
                                 </li>
@@ -38,17 +38,18 @@
 
             <div class="col-6 add-bill-upper-section add-bill-border-container">
                 <div class="">
-                    <input class="form-control me-2 add-bill-search" type="search" placeholder="Search Products" aria-label="Search">
+                    <input class="form-control search-products me-2 add-bill-search" type="search" placeholder="Search Products" id="products-search" aria-label="Search">
                 </div>
                 <div class="">
                     <div class="add-bill-customer-overflow mt-3">
-                        <ul class="list-group">
+                        <ul class="list-group search-products-list">
+                            
                             @{
                                 foreach (var product in ViewBag.ProductDetails)
                                 {
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        @product.ProductName
-                                        <span>
+                                    <li class="list-group-item">
+                                                                    <p style="display:inline">@product.ProductName</p>
+                                        <span class="float-right">
                                             <button id="@product.ProductId" class="btn btn-sm btn-primary">Select</button>
                                         </span>
                                     </li>
