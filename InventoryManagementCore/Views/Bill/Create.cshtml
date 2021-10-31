@@ -12,7 +12,7 @@
 <script src="~/js/Bill/search.js"></script>
 <script src="~/js/Bill/handleData.js"></script>
 <script>
-    
+
 </script>
 <div class="product-quantity product-selling-price"></div>
 <div class="col">
@@ -21,17 +21,17 @@
             <div class="col-6  add-bill-upper-section add-bill-border-container">
                 <div class="add-bill-search-customer">
                     <input class="form-control search-customer me-2 add-bill-search" style="display: inline; width: 92%" type="search" placeholder="Search Customers here" aria-label="Search">
-                    <a asp-action="Create" asp-controller="Customer"> 
+                    <a asp-action="Create" asp-controller="Customer">
                         <button class="btn btn-success btn-add-product" style="display: inline;" data-toggle="tooltip" data-placement="top" title="Add New Customer">+</button>
                     </a>
                 </div>
                 <div class="add-bill-customer-overflow mt-3">
-                    <ul class="list-group search-customers-list" >
+                    <ul class="list-group search-customers-list">
                         @{
                             foreach (var cust in ViewBag.CustomerDetails)
                             {
                                 <li class="list-group-item">
-                                                            <p style="display:inline">@cust.CustomerName</p>
+                                    <p style="display:inline">@cust.CustomerName</p>
                                     <span class="float-right">
                                         <button id="@cust.CustomerId" class="select-customer btn btn-sm btn-primary">Select</button>
                                     </span>
@@ -50,14 +50,14 @@
                 <div class="">
                     <div class="add-bill-customer-overflow mt-3">
                         <ul class="list-group search-products-list">
-                            
+
                             @{
                                 foreach (var product in ViewBag.ProductDetails)
                                 {
                                     <li class="list-group-item">
-                                                                    <p style="display:inline">@product.ProductName</p>
+                                        <p style="display:inline">@product.ProductName</p>
                                         <span class="float-right">
-                                            <button  id="@product.ProductId" class="select-product btn btn-sm btn-primary">Select</button>
+                                            <button id="@product.ProductId" class="select-product btn btn-sm btn-primary">Select</button>
                                         </span>
                                     </li>
 
@@ -72,13 +72,13 @@
     <div class="row ">
         <div class="col-12 add-bill-border-container">
             <div class="row">
-                <div class="col-7">
+                <div class="col-9">
                     <p class="mt-1">
                         Customer Name:
                         <span id="cust-name"></span>
                     </p>
                 </div>
-                <div class="col-5">
+                <div class="col-3">
                     <p class="mt-1">
                         Phone No:
                         <span id="cust-phone-no"></span>
@@ -86,18 +86,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <p>
+                <div class="col-9">
+                    <p class="mt-1">
                         Address:
-                        <span id="cust-address"></span>
+                        <span id="cust-name"></span>
                     </p>
                 </div>
+                <div class="col-3">
+                    <p class="mt-1">
+                        Net Outstanding: 
+                        <span id="cust-phone-no"></span>
+                    </p>
+                </div>
+                
+                
             </div>
-            
+
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Sr. No</th>
+                        <th scope="col" style="display: none">Sr. No</th>
                         <th scope="col">Product</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Selling Price</th>
@@ -109,13 +117,33 @@
                 </tbody>
                 <tfoot>
                     <tr>
+
+                        <td>Total Quatity:</td>
+                        <td id="finalQty">0</td>
+                        <td>Total Price:</td>
+                        <td id="finalTotal">0</td>
                         <td></td>
-                        <td></td>
-                        <td id="finalQty">totqty</td>
-                        <td></td>
-                        <td id="finalTotal">total</td>
                         <td></td>
                     </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div style="display: flex; justify-content: space-evenly">
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Total Paid</span>
+                                    </div>
+                                    <input type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                </div>
+                            </div>
+                        </td>
+                        <td colspan="3">
+                            <div style="display: flex; justify-content: space-evenly">
+                                <button class="btn btn-success">Make Bill</button>
+                            </div>
+                        </td>
+
+                    </tr>
+
                 </tfoot>
             </table>
         </div>

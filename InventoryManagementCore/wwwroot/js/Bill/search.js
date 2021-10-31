@@ -69,26 +69,31 @@
              success: function (response) {
                  //console.log(response);
                  const name = response["productName"];
+                 const prodId = response["productId"];
                  const sellingPrice = response["sellingPrice"];
                  const quantity = 0;
                  const productCount = document.getElementById("product-items").children.length + 1;
                  //console.log($('#product-items'));
 
-                 const productData = `<tr>
-                        <th scope="row">${productCount}</th>
+                 const productData = `<tr id="pdt-main-row-${productCount}">
+                        <th scope="row" style="display: none">${prodId}</th>
                         <td>${name}</td>
-                        <td> <input onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Quantity" value="${quantity}"></td>
+                        <td> <input onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Qty" value="${quantity}"></td>
                         <td><input onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"> </td>
                         <td id="total-${productCount}">0</td>
-                        <td id="${productCount}"><button class="btn btn-sm btn-danger">Delete</button></td>
+                        <td id="${productCount}"><button id="${productCount}" onclick="handleDelete(${productCount})" class="pdt-delete btn btn-sm btn-danger">Delete</button></td>
                     </tr>`
 
                  $('#product-items').append(productData);
              }
          })
      });
-     
-     
+
+     $('.pdt-delete').click(function () {
+         const id = this.id;
+         //console.log(id);
+         console.log("clicked");
+     })
  });
 
 function handleFinalTotal() {
@@ -115,6 +120,22 @@ function handleChange(idx) {
     handleFinalTotal()
 }
 
+function handleDelete(idx) {
+    console.log("delete clicked");
+    document.getElementById("pdt-main-row-" + idx).remove();
+    handleFinalTotal();
+    //deleteRoutine();
+}
+
+function deleteRoutine() {
+    const parent = document.getElementById("product-items").children
+
+    $(parent).each((e) => {
+        const childElem = parent[e].children[0]
+        console.log(childElem);
+        childElem.innerText = e + 1;
+    })
+}
 
     
 
