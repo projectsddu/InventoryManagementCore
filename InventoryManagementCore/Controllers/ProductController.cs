@@ -36,20 +36,6 @@ namespace InventoryManagementCore.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Create(ProductCreateViewModel p)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Product pdt = _pdtRepo.AddProduct(p);
-        //        return RedirectToAction("details", new { id = pdt.ProductId });
-        //    }
-        //    return View();
-        //}
-
-
-
-
         [HttpPost]
         public IActionResult Create(ProductCreateViewModel model)
         {
@@ -82,17 +68,13 @@ namespace InventoryManagementCore.Controllers
             return View();
         }
 
-
-
-
-
         public ViewResult Details(int id)
         {
             Product product = _pdtRepo.GetProduct(id);
             if (product == null)
             {
                 Response.StatusCode = 404;
-                return View("Product Not Found", id);
+                return View("ProductNotFound", id);
             }
             return View(product);
         }

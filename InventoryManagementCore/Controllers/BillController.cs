@@ -51,8 +51,8 @@ namespace InventoryManagementCore.Controllers
             if (bill == null)
             {
                 Response.StatusCode = 404;
-                
-                return View("Bill Not Found", id);
+
+                return View("BillNotFound", id);
             }
             ViewBag.bill = bill;
             IEnumerable<BillItem> it = _billItemRepo.GetAllBillItems(bill.BillId);
