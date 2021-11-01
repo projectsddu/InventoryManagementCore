@@ -81,7 +81,7 @@
                         <th scope="row" style="display: none">${prodId}</th>
                         <td>${name}</td>
                         <td> <input min="0" onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Qty" value="${quantity}"></td>
-                        <td><input min="0" onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"> </td>
+                        <td><input min="0" onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"></td>
                         <td id="total-${productCount}">0</td>
                         <td id="${productCount}"><button id="${productCount}" onclick="handleDelete(${productCount})" class="pdt-delete btn btn-sm btn-danger">Delete</button></td>
                     </tr>`

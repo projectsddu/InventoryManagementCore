@@ -22,9 +22,11 @@ namespace InventoryManagementCore.Models.Models
         [Required(ErrorMessage = "Total Amount Paid is required!!")]
         public int BillTotalPaid { get; set; }
 
-        [Display(Name = "Customer Name")]
         [Required(ErrorMessage ="Customer name is required!!")]
+        [Display(Name = "Customer Id")]
         public int CustomerId { get; set; }
+
+        [Display(Name = "Customer Name")]
         public Customer Customer { get; set; }
 
         public ICollection<BillItem> BillItems { get; set; }

@@ -51,7 +51,7 @@
         var photoPath = "~/Images/" + (item.ProductPhotoPath ?? "DefaultProductImage.jpg");
     <div class="card col-4">
         @*<img src="https://source.unsplash.com/random/1600x900" alt="Random" style="width: 100%" />*@
-        <img class="card-img-top" src="@photoPath" asp-append-version="true" alt="Random" style="width: 100%"/>
+        <img class="card-img-top" src="@photoPath" asp-append-version="true" alt="Random" style="width: 50%; margin-left: 25%;"/>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.ProductName): @Html.DisplayFor(modelItem => item.ProductName)</b></li>
             <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(modelItem => item.Category.CategoryName)</b></li>
