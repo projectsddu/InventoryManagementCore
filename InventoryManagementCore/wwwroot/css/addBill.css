@@ -4,6 +4,7 @@
 .bill-quantity-price-input {
     border: 1px solid black;
     width: 36%;
+    padding-left: 2%;
 }
 
 .add-bill-border-container {
