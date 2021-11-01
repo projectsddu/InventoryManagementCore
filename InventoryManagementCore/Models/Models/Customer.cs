@@ -25,6 +25,7 @@ namespace InventoryManagementCore.Models.Models
         public string CustomerAddress { get; set; }
 
         [DefaultValue(0)]
+        [Display(Name = "Total Outstanding")]
         public int totalOutstanding { get; set; }
 
         public ICollection<Bill> Bill { get; set; }
