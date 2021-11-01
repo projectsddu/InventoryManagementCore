@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" />
+                <input asp-for="ProductName" class="form-control" style="border: 1px solid black;"/>
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -21,22 +21,24 @@
                 @*<label>Product Image:</label>*@
                 @*<input asp-for="ProductPhoto" class="form-control custom-file-input">*@
                 @*<input asp-for="ProductPhoto" type="file" accept="image/png, image/jpeg, image/jpg" style="margin-top: 1%;">*@
+            @*<div style="border: 2px solid black">*@
                 <input asp-for="ProductPhoto" class="form-control custom-file-input" accept="image/png, image/jpeg, image/jpg, image/webp">
                 <label class="custom-file-label" style="margin-left: 4%; margin-top: 31%; max-width: 93%;">Choose File...</label>
+            @*</div>*@
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
+                <input asp-for="Quantity" class="form-control" style="border: 1px solid black;"/>
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BuyingPrice" class="control-label"></label>
-                <input asp-for="BuyingPrice" class="form-control" />
+                <input asp-for="BuyingPrice" class="form-control" style="border: 1px solid black;"/>
                 <span asp-validation-for="BuyingPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SellingPrice" class="control-label"></label>
-                <input asp-for="SellingPrice" class="form-control" />
+                <input asp-for="SellingPrice" class="form-control" style="border: 1px solid black;" />
                 <span asp-validation-for="SellingPrice" class="text-danger"></span>
             </div>
             @*<div class="form-group row">
@@ -50,10 +52,10 @@
                 </div>*@
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId" style="border: 1px solid black;"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success" style="width:40%;"/>
             </div>
             @*This script is required to display the selected file in the file upload element*@
 
