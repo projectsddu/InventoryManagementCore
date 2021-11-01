@@ -22,11 +22,11 @@
 </script>
 
 <div class="col">
-    <div class="row-12">
-        <div class="col-10"></div>
-    <button onclick="handlePrint()" id="printBtn" class=" btn btn-success col-2">Print</button>
-    </div>
-    <br/>
+    @*<div class="row-12">
+            <div class="col-10"></div>
+        <button onclick="handlePrint()" id="printBtn" class=" btn btn-success col-2">Print</button>
+        </div>*@
+    <br />
     <div class="row view-bill-customer-details">
         @{
             var billObj = ViewBag.bill;
@@ -125,5 +125,9 @@
             </tfoot>
         </table>
 
+    </div>
+    <div class="row-12" style="text-align: center;">
+        @*<div class="col-10"></div>*@
+        <button onclick="handlePrint()" id="printBtn" class=" btn btn-success col-2">Print Bill</button>
     </div>
 </div>
