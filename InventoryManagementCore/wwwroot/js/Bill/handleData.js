@@ -66,19 +66,24 @@ function handleMakeBill() {
         }
         const productData = generateItemsData(productDetails)
         const finalData = {
-            "customerId": customerId,
+            "customerId": parseInt(customerId),
             "productData": productData,
-            "totalPaid": totalPaid
+            "totalPaid": parseInt(totalPaid),
+            "totalBillAmount": parseInt(finalTotal)
         }
         console.log(finalData)
         $.ajax({
             url: '/Bill/makeBill',
-            method: 'get',
+            type: 'POST',
             dataType: "json",
-            data: JSON.stringify(finalData),
-            contentType: "application/json;charset=utf-8",
+            data: finalData,
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            //contentType: "application/json; charset=utf-8",
             success: function (res) {
                 console.log(res)
+                if (res["messageType"] == "Success") {
+                    location.replace("https://localhost:44301/")
+                }
             }
         })
     }

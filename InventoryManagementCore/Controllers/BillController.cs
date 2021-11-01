@@ -117,16 +117,73 @@ namespace InventoryManagementCore.Controllers
             
         }
 
-        // not working
-        [HttpGet]
-        public IActionResult makeBill()
+        public class ProductItemModel
         {
-            var body="";
-            using (var reader = new StreamReader(Request.Body))
+            public int productId { get; set; }
+            public int quantity { get; set; }
+            public int sellPrice { get; set; }
+            public int total { get; set; }
+        }
+        public class NewBillModel
+        {
+            public string customerId { get; set; }
+            public List<ProductItemModel> productData { get; set; }
+            public int totalPaid { get; set; }
+            public int totalBillAmount { get; set; }
+        }
+        public class ResponseModel
+        {
+            public string message { get; set; }
+            public string messageType { get; set; }
+        }
+
+        
+        [HttpPost]
+        public async Task<IActionResult> makeBill(NewBillModel model)
+        {
+            NewBillModel billModel = new NewBillModel()
             {
-                body = reader.ReadToEnd();
+                customerId =  model.customerId,
+                productData = model.productData,
+                totalPaid = model.totalPaid,
+                totalBillAmount = model.totalBillAmount
+            };
+            Customer customerObj = _custRepo.GetCustomer(Convert.ToInt32(billModel.customerId));
+            Bill bill = new Bill()
+            {
+                BillDateTime = DateTime.Now,
+                BillTotalCost = billModel.totalBillAmount,
+                BillTotalPaid = billModel.totalPaid,
+                Customer = customerObj,
+                CustomerId = customerObj.CustomerId,
+                BillItems = new List<BillItem>()
+            };
+            for(int i=0;i<model.productData.Count;i++)
+            {
+                ProductItemModel pdtItem = model.productData[i];
+                BillItem item = new BillItem()
+                {
+                    BillItemQuantity = pdtItem.quantity,
+                    BillItemSellingPrice = pdtItem.sellPrice,
+                    Product = _prodRepo.GetProduct(pdtItem.productId),
+                    ProductId = pdtItem.productId,
+                };
+                if(item==null)
+                {
+                    throw new NullReferenceException();
+                }
+                else
+                {
+                    bill.BillItems.Add(item);
+                }
             }
-            return Json(body);
+            _billRepo.AddBill(bill);
+            ResponseModel respModel = new ResponseModel()
+            {
+                message = "Success your bill is created!!",
+                messageType = "Success"
+            };
+            return Json(respModel);
         }
      }
 }
