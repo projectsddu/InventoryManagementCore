@@ -102,7 +102,6 @@ namespace InventoryManagementCore.Controllers
         }
 
         [HttpPost]
-
         public JsonResult fillProductDetails(int id)
         {
             Product product = _prodRepo.GetProduct(id);

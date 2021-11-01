@@ -1,10 +1,12 @@
 using InventoryManagementCore.Models;
 using InventoryManagementCore.Models.Interfaces;
 using InventoryManagementCore.Models.SQLRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +38,11 @@ namespace InventoryManagementCore
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
             services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
             services.AddScoped<IBillRepository, SQlBillRespository>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

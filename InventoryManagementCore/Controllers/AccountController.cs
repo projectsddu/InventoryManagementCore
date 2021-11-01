@@ -11,12 +11,7 @@ namespace InventoryManagementCore.Controllers
 {
     public class AccountController : Controller
     {
-        //[HttpGet]
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
-
+        
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
 
@@ -26,20 +21,11 @@ namespace InventoryManagementCore.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Logout()
-        {
-            await signInManager.SignOutAsync();
-            return RedirectToAction("Login", "Account");
-        }
+        
+        
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -60,7 +46,16 @@ namespace InventoryManagementCore.Controllers
             return View();
         }
 
+        [HttpGet]
+        //[AllowAnonymous]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
         [HttpPost]
+        //[AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -82,6 +77,11 @@ namespace InventoryManagementCore.Controllers
             return View();
         }
 
-
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
+        }
     }
 }
