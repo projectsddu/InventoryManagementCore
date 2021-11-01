@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using InventoryManagementCore.Models.Interfaces;
 using InventoryManagementCore.Models.Models;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace InventoryManagementCore.Controllers
 {
@@ -18,14 +19,16 @@ namespace InventoryManagementCore.Controllers
     public class BillController : Controller
     {
         private readonly IBillRepository _billRepo;
+        private readonly IBillItemRepository _billItemRepo;
         private readonly ICustomerRepository _custRepo;
         private readonly IProductRepository _prodRepo;
         public BillController(IBillRepository _billRepo, ICustomerRepository _custRepo, 
-            IProductRepository _prodRepo)
+            IProductRepository _prodRepo, IBillItemRepository _billItemRepo)
         {
             this._billRepo = _billRepo;
             this._custRepo = _custRepo;
             this._prodRepo = _prodRepo;
+            this._billItemRepo = _billItemRepo;
         }
 
         public IActionResult Index()
@@ -48,8 +51,13 @@ namespace InventoryManagementCore.Controllers
             if (bill == null)
             {
                 Response.StatusCode = 404;
+
                 return View("BillNotFound", id);
             }
+            ViewBag.bill = bill;
+            IEnumerable<BillItem> it = _billItemRepo.GetAllBillItems(bill.BillId);
+            ViewBag.billItems = it;
+            //Response.WriteAsync(it.ElementAt(0).BillItemSellingPrice.ToString());
             return View(bill);
         }
 
@@ -135,6 +143,7 @@ namespace InventoryManagementCore.Controllers
         {
             public string message { get; set; }
             public string messageType { get; set; }
+            
         }
 
         
@@ -149,6 +158,11 @@ namespace InventoryManagementCore.Controllers
                 totalBillAmount = model.totalBillAmount
             };
             Customer customerObj = _custRepo.GetCustomer(Convert.ToInt32(billModel.customerId));
+
+            // total outstanding amount = totalBillAmount-totalPaid
+            customerObj.totalOutstanding += (Convert.ToInt32(billModel.totalBillAmount) - Convert.ToInt32(billModel.totalPaid));
+            customerObj = _custRepo.UpdateCustomer(customerObj);
+
             Bill bill = new Bill()
             {
                 BillDateTime = DateTime.Now,
@@ -167,6 +181,8 @@ namespace InventoryManagementCore.Controllers
                     BillItemSellingPrice = pdtItem.sellPrice,
                     Product = _prodRepo.GetProduct(pdtItem.productId),
                     ProductId = pdtItem.productId,
+                    Bill = bill,
+                    BillId = bill.BillId
                 };
                 if(item==null)
                 {
@@ -180,7 +196,7 @@ namespace InventoryManagementCore.Controllers
             _billRepo.AddBill(bill);
             ResponseModel respModel = new ResponseModel()
             {
-                message = "Success your bill is created!!",
+                message = bill.BillId.ToString(),
                 messageType = "Success"
             };
             return Json(respModel);

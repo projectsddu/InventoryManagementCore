@@ -10,7 +10,7 @@ namespace InventoryManagementCore.Models.Interfaces
     {
         BillItem GetBillItem(int Id);
 
-        IEnumerable<BillItem> GetAllBillItems();
+        IEnumerable<BillItem> GetAllBillItems(int id);
 
         BillItem AddBillItem(BillItem billItem);
 
