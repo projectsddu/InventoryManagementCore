@@ -51,11 +51,13 @@
                  const name = response["customerName"];
                  const phoneNo = response["customerPhoneNo"];
                  const address = response["customerAddress"];
+                 const netOutstanding = response["totalOutstanding"];
 
                  document.getElementById("cust-name").innerText = name;
                  document.getElementById("cust-phone-no").innerText = phoneNo;
                  document.getElementById("cust-address").innerText = address;
                  document.getElementById("cust-id").innerText = customerId;
+                 document.getElementById("cust-net-outstanding").innerText = netOutstanding;
              },
              method: 'post'
          })

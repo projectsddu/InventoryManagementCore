@@ -87,8 +87,17 @@ namespace InventoryManagementCore.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            Customer customer = _custRepo.DeleteCustomer(id);
-            return RedirectToAction("index");
+            Customer customer = _custRepo.GetCustomer(id);
+            if(customer.totalOutstanding == 0)
+            {
+                _custRepo.DeleteCustomer(id);
+            }
+            else
+            {
+                ViewBag.Message = "Customer cannot be deleted as he has not cleared his/her previous debt.";
+                return View("Message");
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

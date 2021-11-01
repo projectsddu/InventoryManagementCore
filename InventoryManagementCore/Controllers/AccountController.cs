@@ -21,8 +21,15 @@ namespace InventoryManagementCore.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        
-        
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            ViewBag.Users = userManager.Users;
+            return View();
+        }
+
+
 
         [HttpGet]
         [AllowAnonymous]
