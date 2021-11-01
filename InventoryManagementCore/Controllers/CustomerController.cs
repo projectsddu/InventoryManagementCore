@@ -45,7 +45,7 @@ namespace InventoryManagementCore.Controllers
             if (customer == null)
             {
                 Response.StatusCode = 404;
-                return View("Customer Not Found", id);
+                return View("CustomerNotFound", id);
             }
             return View(customer);
         }
