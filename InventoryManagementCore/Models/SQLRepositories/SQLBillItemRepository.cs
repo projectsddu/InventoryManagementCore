@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InventoryManagementCore.Models.Interfaces;
 using InventoryManagementCore.Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagementCore.Models.SQLRepositories
 {
@@ -33,9 +34,18 @@ namespace InventoryManagementCore.Models.SQLRepositories
             return b;
         }
 
-        public IEnumerable<BillItem> GetAllBillItems()
+        public IEnumerable<BillItem> GetAllBillItems(int Id)
         {
-            return context.BillItems;
+            List<BillItem> items = new List<BillItem>();
+            foreach(var it in context.BillItems)
+            {
+                if(it.BillId==Id)
+                {
+                    it.Product = context.Products.Find(it.ProductId);
+                    items.Add(it);
+                }
+            }
+            return items;
         }
 
         public BillItem GetBillItem(int Id)

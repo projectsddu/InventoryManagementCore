@@ -37,6 +37,7 @@ namespace InventoryManagementCore
             services.AddScoped<IProductRepository, SQLProductRepository>();
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
             services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
+            services.AddScoped<IBillItemRepository, SQLBillItemRepository>();
             services.AddScoped<IBillRepository, SQlBillRespository>();
             services.AddControllersWithViews(config =>
             {

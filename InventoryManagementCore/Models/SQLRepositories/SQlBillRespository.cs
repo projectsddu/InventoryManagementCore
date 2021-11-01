@@ -54,7 +54,7 @@ namespace InventoryManagementCore.Models.SQLRepositories
 
         public Bill GetBill(int Id)
         {
-            return context.Bills.Find(Id);
+            return context.Bills.Include(b => b.Customer).FirstOrDefault(m => m.BillId == Id);
         }
 
         public IEnumerable<Customer> GetCustomers()

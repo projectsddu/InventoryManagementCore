@@ -82,7 +82,7 @@ function handleMakeBill() {
             success: function (res) {
                 console.log(res)
                 if (res["messageType"] == "Success") {
-                    location.replace("https://localhost:44301/")
+                    location.replace("/Bill/Details/" + res["message"])
                 }
             }
         })
