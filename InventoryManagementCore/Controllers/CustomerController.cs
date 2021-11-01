@@ -1,5 +1,6 @@
 ﻿using InventoryManagementCore.Models.Interfaces;
 using InventoryManagementCore.Models.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -35,8 +36,11 @@ namespace InventoryManagementCore.Controllers
             if(ModelState.IsValid)
             {
                 _custRepo.UpdateCustomer(customer);
-                return RedirectToAction("index");
+
+                return RedirectToAction("Index");
             }
+
+            Response.WriteAsync(customer.totalOutstanding.ToString());
             return View();
             
         }

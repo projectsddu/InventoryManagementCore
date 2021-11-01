@@ -1,34 +1,8 @@
 ﻿@model InventoryManagementCore.Models.Models.Customer
 
 @{
-    ViewData["Title"] = "PayDebt";
+    ViewData["Title"] = "CheckDebt";
 }
-<script>
-    function handleDebt() {
-        const elem = document.getElementById("amount").value;
-        console.log(elem)
-    }
-    $(document).ready(() => {
-        //console.log("Jenil")
-        const element = document.getElementById("totalOutstanding");
-        const element1 = document.getElementById("finalAmount");
-        element1.value = element.value;
-
-        $('#amount').on('keyup', function () {
-            const amount = document.getElementById("amount");
-            const finalAmount = document.getElementById("finalAmount");
-            const totalOutstanding = document.getElementById("totalOutstanding");
-
-            if (parseInt(amount.value) > parseInt(finalAmount.value)) {
-                amount.value = finalAmount.value;
-            }
-            totalOutstanding.value = finalAmount.value - amount.value;
-
-        })
-    })
-</script>
-<h1>Pay Debt</h1>
-<hr style="border: 2px solid #007bff;" />
 
 <style>
     .hideInputs {
@@ -36,14 +10,13 @@
     }
 </style>
 
+<h1>CheckDebt</h1>
+
+<h4>Customer</h4>
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Amount</label>
-            <input class="form-control" style="border: 1px solid black;" type="number" id="amount" />
-        </div>
-        <input type="number" style="display: none;" id="finalAmount" disabled />
-        <form asp-action="PayDebt" method="post">
+        <form asp-action="CheckDebt">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CustomerId" />
             <div class="form-group hideInputs">
@@ -63,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="totalOutstanding" class="control-label"></label>
-                <input id="totalOutstanding" asp-for="totalOutstanding" class="form-control" />
+                <input asp-for="totalOutstanding" class="form-control" />
                 <span asp-validation-for="totalOutstanding" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -77,6 +50,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
