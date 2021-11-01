@@ -35,7 +35,7 @@ namespace InventoryManagementCore.Models.SQLRepositories
 
         public IEnumerable<Customer> GetAllCustomers()
         {
-            return context.Customers;
+            return context.Customers.OrderByDescending(p=>p.totalOutstanding);
         }
 
         public Customer GetCustomer(int Id)

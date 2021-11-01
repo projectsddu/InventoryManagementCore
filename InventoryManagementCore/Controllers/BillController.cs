@@ -15,6 +15,7 @@ namespace InventoryManagementCore.Controllers
         public int productId { get; set; }
         public string productName { get; set; }
         public int sellingPrice { get; set; }
+        public int quantity { get; set; }
     }
     public class BillController : Controller
     {
@@ -36,6 +37,8 @@ namespace InventoryManagementCore.Controllers
             var model = _billRepo.GetAllBills();
             return View(model);
         }
+
+        
 
         [HttpGet]
         public ViewResult Create()
@@ -118,7 +121,8 @@ namespace InventoryManagementCore.Controllers
             {
                 productName = product.ProductName,
                 sellingPrice = product.SellingPrice,
-                productId = product.ProductId
+                productId = product.ProductId,
+                quantity = product.Quantity
             };
 
             return Json(p);
@@ -175,15 +179,18 @@ namespace InventoryManagementCore.Controllers
             for(int i=0;i<model.productData.Count;i++)
             {
                 ProductItemModel pdtItem = model.productData[i];
+                Product productFk = _prodRepo.GetProduct(pdtItem.productId);
                 BillItem item = new BillItem()
                 {
                     BillItemQuantity = pdtItem.quantity,
                     BillItemSellingPrice = pdtItem.sellPrice,
-                    Product = _prodRepo.GetProduct(pdtItem.productId),
+                    Product = productFk,
                     ProductId = pdtItem.productId,
                     Bill = bill,
                     BillId = bill.BillId
                 };
+                productFk.Quantity -= pdtItem.quantity;
+                _prodRepo.UpdateProduct(productFk);
                 if(item==null)
                 {
                     throw new NullReferenceException();

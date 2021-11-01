@@ -23,6 +23,25 @@ namespace InventoryManagementCore.Controllers
         }
 
         [HttpGet]
+        public IActionResult PayDebt(int id)
+        {
+            Customer cust = _custRepo.GetCustomer(id);
+            //ViewBag.customer = cust
+            return View(cust);
+        }
+        [HttpPost]
+        public IActionResult PayDebt(Customer customer)
+        {
+            if(ModelState.IsValid)
+            {
+                _custRepo.UpdateCustomer(customer);
+                return RedirectToAction("index");
+            }
+            return View();
+            
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();

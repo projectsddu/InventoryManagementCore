@@ -69,19 +69,21 @@
              url: '/Bill/fillProductDetails/' + id,
              method: 'post',
              success: function (response) {
-                 //console.log(response);
+                 console.log(response);
                  const name = response["productName"];
                  const prodId = response["productId"];
                  const sellingPrice = response["sellingPrice"];
                  const quantity = 0;
                  const productCount = document.getElementById("product-items").children.length + 1;
                  //console.log($('#product-items'));
+                 const avlQty = response["quantity"]
+                 localStorage.setItem(productCount, avlQty)
 
                  const productData = `<tr id="pdt-main-row-${productCount}">
                         <th scope="row" style="display: none">${prodId}</th>
                         <td>${name}</td>
-                        <td> <input min="0" onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Qty" value="${quantity}"></td>
-                        <td><input min="0" onchange="handleChange(${productCount})" onkeyup = "handleChange(${productCount})"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"></td>
+                        <td> <input min="0" max="${avlQty}" onchange="handleChange('${productCount}')" onkeyup = "handleChange('qty-${productCount}')"  id="qty-${productCount}" class="product-quantity bill-quantity-price-input" type="number" placeholder="Qty" value="${quantity}"></td>
+                        <td><input min="0" onchange="handleChange('${productCount}')" onkeyup = "handleChange('${productCount}')"  id="price-${productCount}" class="product-selling-price bill-quantity-price-input" type="number" placeholder="Price" value="${sellingPrice}"></td>
                         <td id="total-${productCount}">0</td>
                         <td id="${productCount}"><button id="${productCount}" onclick="handleDelete(${productCount})" class="pdt-delete btn btn-sm btn-danger">Delete</button></td>
                     </tr>`
@@ -115,8 +117,23 @@ function handleFinalTotal() {
 }
 
 function handleChange(idx) {
+    console.log(idx)
+    const data = idx.split("-")
+    if (data.length > 1) {
+        idx = data[1]
+    }
+    else {
+      const type = "price"
+    }
     const price = document.getElementById("price-" + idx).value
-    const qty = document.getElementById("qty-" + idx).value
+    
+    let qty = document.getElementById("qty-" + idx).value
+    let avl = parseInt(localStorage.getItem(idx))
+    
+    if (qty > avl) {
+        document.getElementById("qty-" + idx).value = avl
+        qty = avl
+    }
     const totalElem = document.getElementById("total-" + idx)
     totalElem.innerText = qty * price
     handleFinalTotal()

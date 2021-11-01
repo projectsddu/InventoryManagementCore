@@ -1,0 +1,43 @@
+﻿@model InventoryManagementCore.Models.Models.Customer
+
+@{
+    ViewData["Title"] = "PayDebt";
+}
+<script>
+    function handleDebt() {
+        const elem = document.getElementById("amount").value;
+        console.log(elem)
+    }
+    $(document).ready(() => {
+        console.log("Jenil")
+        document.getElementById("finalAmount")
+    })
+</script>
+<h1>Pay Debt</h1>
+<hr style="border: 2px solid #007bff;" />
+
+<hr />
+<div class="row">
+    
+    <div class="col-md-4">
+        <input type="number" id="amount"/>
+        <input type="number" id="finalAmount"/>
+        <form asp-action="PayDebt">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CustomerId" />
+            <div class="form-group">
+                <label asp-for="totalOutstanding" class="control-label">Outstanding</label>
+                <input asp-for="totalOutstanding" class="form-control" id="totalOutstanding" style="border: 1px solid black;" disabled/>
+                <span asp-validation-for="totalOutstanding" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

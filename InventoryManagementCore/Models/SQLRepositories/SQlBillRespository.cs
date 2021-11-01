@@ -44,7 +44,8 @@ namespace InventoryManagementCore.Models.SQLRepositories
 
         public IEnumerable<Bill> GetAllBills()
         {
-            return context.Bills;
+            return  context.Bills.Include(b => b.Customer).OrderByDescending(p=>p.BillDateTime);
+
         }
 
         public IEnumerable<Bill> GetAllCustomerBills()
