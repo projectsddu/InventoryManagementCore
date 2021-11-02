@@ -41,13 +41,13 @@
             <div class="col-4 " style="display:flex;justify-content:center;align-content:center">
                 <div class="shadow-xl bg2 opacity-90" style="width:100%;padding:17%;color:white">
                     <h1 class="display-4 fb-1000"><b>Welcome Back,</b></h1>
-                    <h3><b>@User.Identity.Name</b></h3>
+                    <h3 style="text-transform:capitalize"><b>@User.Identity.Name</b></h3>
                 </div>
             </div>
             <div class="col-4" style="display:flex;justify-content:center;align-content:center">
                 <div class="shadow-xl bg2 opacity-90" style="width:100%;padding:17%;color:white">
                     <h1 class="display-4 fb-1000"><b>Total Sales</b></h1>
-                    <h3><b>@totalSales</b></h3>
+                    <h3><b>₹ @totalSales</b></h3>
                 </div>
             </div>
             <div class="col-4" style="display:flex;justify-content:center;align-content:center">
@@ -83,7 +83,7 @@
                         <li class="list-group-item">
                             @bills.ElementAt(i).Customer.CustomerName
                             <span class="ml-auto">
-                                Rs. @bills.ElementAt(i).BillTotalCost 
+                                ₹ @bills.ElementAt(i).BillTotalCost
                             </span>
                         </li>
                         tempBillCount++;

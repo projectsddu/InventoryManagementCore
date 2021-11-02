@@ -63,29 +63,32 @@ function handleMakeBill() {
         // make bill
         if (finalTotal == 0) {
             reason += " Your total bill amount is 0!! Do you really want to make the bill? "
+            return;
         }
-        const productData = generateItemsData(productDetails)
-        const finalData = {
-            "customerId": parseInt(customerId),
-            "productData": productData,
-            "totalPaid": parseInt(totalPaid),
-            "totalBillAmount": parseInt(finalTotal)
-        }
-        console.log(finalData)
-        $.ajax({
-            url: '/Bill/makeBill',
-            type: 'POST',
-            dataType: "json",
-            data: finalData,
-            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-            //contentType: "application/json; charset=utf-8",
-            success: function (res) {
-                console.log(res)
-                if (res["messageType"] == "Success") {
-                    location.replace("/Bill/Details/" + res["message"])
-                }
+        else {
+            const productData = generateItemsData(productDetails)
+            const finalData = {
+                "customerId": parseInt(customerId),
+                "productData": productData,
+                "totalPaid": parseInt(totalPaid),
+                "totalBillAmount": parseInt(finalTotal)
             }
-        })
+            console.log(finalData)
+            $.ajax({
+                url: '/Bill/makeBill',
+                type: 'POST',
+                dataType: "json",
+                data: finalData,
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                //contentType: "application/json; charset=utf-8",
+                success: function (res) {
+                    console.log(res)
+                    if (res["messageType"] == "Success") {
+                        location.replace("/Bill/Details/" + res["message"])
+                    }
+                }
+            })
+        }
     }
     
     if (reason != "") {
