@@ -17,15 +17,15 @@
     const elem = document.getElementById("printBtn")
     elem.style.display = "none"
     window.print()
-    elem.style.display = "block"
+    elem.style.display = "inline-block"
     }
 </script>
 
 <div class="col">
-    @*<div class="row-12">
-            <div class="col-10"></div>
-        <button onclick="handlePrint()" id="printBtn" class=" btn btn-success col-2">Print</button>
-        </div>*@
+    <div class="row-12" style="text-align: center;">
+        @*<div class="col-10"></div>*@
+        <button onclick="handlePrint()" id="printBtn" class=" btn btn-success col-2">Print Bill</button>
+    </div>
     <br />
     <div class="row view-bill-customer-details">
         @{
@@ -125,9 +125,5 @@
             </tfoot>
         </table>
 
-    </div>
-    <div class="row-12" style="text-align: center;">
-        @*<div class="col-10"></div>*@
-        <button onclick="handlePrint()" id="printBtn" class=" btn btn-success col-2">Print Bill</button>
     </div>
 </div>

@@ -22,8 +22,8 @@
          })
          
      });
-     $("#products-search").on('keyup', () => {
-         var searchTerm = $("#products-search").val().toLowerCase()
+     $(".search-products").on('keyup', () => {
+         var searchTerm = $(".search-products").val().toLowerCase()
          console.log(searchTerm, "ckuck")
          const address = ".search-products-list li"
          $(address).each((e) => {

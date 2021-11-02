@@ -8,7 +8,7 @@
 }
 
 .add-bill-border-container {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 .add-bill-upper-section {
@@ -62,3 +62,12 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+
+/*CSS to create vertical line */
+.vertical_line {
+    margin-left: 46%;
+    padding: 0px;
+    border-left: 6px solid #28a745;
+    height: 220px;
+}
