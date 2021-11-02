@@ -68,7 +68,7 @@
                     <li class="list-group-item " style="background-color: #01d639c2; color: white " aria-current="true"><h4>Recently Added Products</h4></li>
                     @for (int i = productsCount - 1; i >= 0; i--)
                     {
-                        <li class="list-group-item"><b>ProductName:</b> @products.ElementAt(i).ProductName</li>
+                        <li class="list-group-item"><b>Product Name:</b> @products.ElementAt(i).ProductName</li>
                         tempProductCount++;
                         if(tempProductCount == 5)
                         {
@@ -80,9 +80,9 @@
                     <li class="list-group-item " style="background-color: #01d639c2; color: white " aria-current="true"><h4>Recently Added Bills</h4></li>
                     @for (int i = 0; i < billsCount; i++)
                     {
-                        <li class="list-group-item">
-                            @bills.ElementAt(i).Customer.CustomerName
-                            <span class="ml-auto">
+                        <li class="list-group-item"><b>Customer Name:</b>
+                            @bills.ElementAt(i).Customer.CustomerName | 
+                            <span class="ml-auto"> <b>Total Cost:</b> 
                                 ₹ @bills.ElementAt(i).BillTotalCost
                             </span>
                         </li>
