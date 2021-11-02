@@ -15,9 +15,9 @@ namespace InventoryManagementCore.Models.Models
         [Display(Name = "Customer Name")]
         public string CustomerName { get; set; }
 
-        [Required(ErrorMessage = "Customer Phone No is required!!")]
-        [Display(Name = "Phone No")]
-        [StringLength(10, MinimumLength = 6, ErrorMessage = "Phone No length should be 6 or 10 characters long!!")]
+        [Required(ErrorMessage = "Customer Phone Number is required!!")]
+        [Display(Name = "Phone Number")]
+        [StringLength(10, MinimumLength = 6, ErrorMessage = "Phone Number length should be 6 or 10 characters long!!")]
         public string CustomerPhoneNo { get; set; }
 
         [Required(ErrorMessage = "Customer Address is required!!")]
