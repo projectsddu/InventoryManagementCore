@@ -1,0 +1,17 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "CustomerNotFound";
+}
+
+
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h1>CustomerNotFound</h1>
+    <hr />
+    <h5>
+        Customer with Id = @Model cannot be found.
+    </h5>
+</div>
+
+<a asp-controller="Customer" asp-action="Index" class="btn btn-outline-success" style="width:auto">Click here to the list of all customers</a>

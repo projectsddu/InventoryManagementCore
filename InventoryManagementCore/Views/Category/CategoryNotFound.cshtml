@@ -1,0 +1,18 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "CategotyNotFound";
+}
+
+
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h1>CategotyNotFound</h1>
+    <hr />
+    <h5>
+        Category with Id = @Model cannot be found.
+    </h5>
+</div>
+
+<a asp-controller="Category" asp-action="Index" class="btn btn-outline-success" style="width:auto">Click here to the list of all categories</a>
+

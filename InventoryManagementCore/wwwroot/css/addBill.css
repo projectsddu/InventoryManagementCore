@@ -1,0 +1,73 @@
+﻿body {
+}
+
+.bill-quantity-price-input {
+    border: 1px solid black;
+    width: 36%;
+    padding-left: 2%;
+}
+
+.add-bill-border-container {
+    /*border: 1px solid black;*/
+}
+
+.add-bill-upper-section {
+    padding: 1%;
+}
+
+.add-bill-search {
+    border: 1px solid black;
+}
+
+.add-bill-search-customer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.list-group li {
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    font-size: 0.8em;
+    font-weight:bolder;
+}
+
+    .list-group li button {
+        font-size: 0.8em;
+    }
+
+.add-bill-customer-overflow {
+    overflow-y: scroll;
+    max-height: 120px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+
+/*CSS to create vertical line */
+.vertical_line {
+    margin-left: 46%;
+    padding: 0px;
+    border-left: 6px solid #28a745;
+    height: 220px;
+}

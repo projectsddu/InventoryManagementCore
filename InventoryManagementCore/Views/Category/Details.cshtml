@@ -1,0 +1,23 @@
+﻿@model InventoryManagementCore.Models.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details Category</h1>
+<hr style="border: 2px solid #BA55D3;" />
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CategoryId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

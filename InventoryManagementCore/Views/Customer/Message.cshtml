@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Message";
+}
+
+
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h1>Message</h1>
+    <hr />
+    <h5>
+        @ViewBag.Message
+    </h5>
+</div>
+
+<a asp-controller="Customer" asp-action="Index" class="btn btn-outline-success" style="width:auto">Click here to the list of all customers</a>

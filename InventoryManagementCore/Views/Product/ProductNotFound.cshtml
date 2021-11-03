@@ -1,0 +1,18 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "ProductNotFound";
+}
+
+
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h1>ProductNotFound</h1>
+    <hr/>
+    <h5>
+        Product with Id = @Model cannot be found.
+    </h5>
+</div>
+
+<a asp-controller="Product" asp-action="Index" class="btn btn-outline-success" style="width:auto">Click here to the list of all products</a>
+

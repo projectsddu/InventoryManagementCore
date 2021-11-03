@@ -1,0 +1,85 @@
+﻿@model IEnumerable<InventoryManagementCore.Models.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+
+    <h1 class="col-4 display-4" style="font-size:45px; padding: 0%; display: inline;">View Products</h1>
+    <div class="col-6">
+        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+             width="24" height="24"
+             viewBox="0 0 172 172"
+             style=" fill:#000000; display: inline; margin-top: -14%; margin-left: 95%;">
+            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                <path d="M0,172v-172h172v172z" fill="none"></path>
+                <g fill="#000000">
+                    <path d="M64.5,14.33333c-27.6214,0 -50.16667,22.54527 -50.16667,50.16667c0,27.6214 22.54527,50.16667 50.16667,50.16667c12.52732,0 23.97256,-4.67249 32.7819,-12.31771l3.05143,3.05143v9.26628l43,43l14.33333,-14.33333l-43,-43h-9.26628l-3.05143,-3.05143c7.64521,-8.80934 12.31771,-20.25458 12.31771,-32.7819c0,-27.6214 -22.54527,-50.16667 -50.16667,-50.16667zM64.5,28.66667c19.87509,0 35.83333,15.95824 35.83333,35.83333c0,19.87509 -15.95825,35.83333 -35.83333,35.83333c-19.87509,0 -35.83333,-15.95825 -35.83333,-35.83333c0,-19.87509 15.95824,-35.83333 35.83333,-35.83333z">
+                    </path>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <p class="col-2" style="margin-top:1%">
+        <a class="btn btn-primary" asp-action="Create" style="margin-top: 2%; margin-left: 31%;">Create New</a>
+    </p>
+</div>
+<hr class="bg-secondary" style="border: 2px solid #6c757d;" />
+
+<style>
+    .card {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        margin-top: 3%;
+        padding: 0px;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .card-button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+        .card-button:hover {
+            opacity: 0.8;
+        }
+
+    .card-img-top {
+        width: 100%;
+        height: 164px;
+        object-fit: cover
+    }
+</style>
+
+<div class=" row">
+
+    @foreach (var item in Model)
+    {
+        var photoPath = "~/Images/" + (item.ProductPhotoPath ?? "DefaultProductImage.jpg");
+        <div class="card col-4" id="Products-Card">
+            @*<img src="https://source.unsplash.com/random/1600x900" alt="Random" style="width: 100%" />*@
+            <img class="card-img-top" src="@photoPath" asp-append-version="true" alt="Random" style="width: 50%; margin-left: 25%;" />
+            <ul class="list-group list-group-flush" id="@item.ProductId">
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.ProductName): @Html.DisplayFor(modelItem => item.ProductName)</b></li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(modelItem => item.Category.CategoryName)</b></li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.Quantity): @Html.DisplayFor(modelItem => item.Quantity)</b></li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.BuyingPrice): &#x20b9 @Html.DisplayFor(modelItem => item.BuyingPrice)</b></li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.SellingPrice): &#x20b9 @Html.DisplayFor(modelItem => item.SellingPrice)</b></li>
+            </ul>
+            <div class="btn-group">
+                <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn card-button btn-success view-product-update-btn">Update</a>
+                <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn card-button btn-danger view-product-delete-btn">Delete</a>
+            </div>
+        </div>
+    }
+</div>

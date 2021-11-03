@@ -1,0 +1,73 @@
+﻿@model IEnumerable<InventoryManagementCore.Models.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+
+    <h1 class="col-4 display-4" style="font-size:45px; padding: 0%; display: inline;">View Customers</h1>
+    <div class="col-6">
+        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+             width="24" height="24"
+             viewBox="0 0 172 172"
+             style=" fill:#000000; display: inline; margin-top: -14%; margin-left: 95%;">
+            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                <path d="M0,172v-172h172v172z" fill="none"></path>
+                <g fill="#000000">
+                    <path d="M64.5,14.33333c-27.6214,0 -50.16667,22.54527 -50.16667,50.16667c0,27.6214 22.54527,50.16667 50.16667,50.16667c12.52732,0 23.97256,-4.67249 32.7819,-12.31771l3.05143,3.05143v9.26628l43,43l14.33333,-14.33333l-43,-43h-9.26628l-3.05143,-3.05143c7.64521,-8.80934 12.31771,-20.25458 12.31771,-32.7819c0,-27.6214 -22.54527,-50.16667 -50.16667,-50.16667zM64.5,28.66667c19.87509,0 35.83333,15.95824 35.83333,35.83333c0,19.87509 -15.95825,35.83333 -35.83333,35.83333c-19.87509,0 -35.83333,-15.95825 -35.83333,-35.83333c0,-19.87509 15.95824,-35.83333 35.83333,-35.83333z">
+                    </path>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <p class="col-2" style="margin-top:1%">
+        <a class="btn btn-primary" asp-action="Create" style="margin-top: 2%; margin-left: 31%;">Create New</a>
+    </p>
+</div>
+<hr class="bg-secondary" style="border: 2px solid #6c757d;" />
+<table class="table table-hover">
+    <thead class="bg-secondary text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPhoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalOutstanding)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPhoneNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.totalOutstanding)
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
+                    <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a> |
+                    <a class="btn btn-sm btn-success" asp-action="PayDebt" asp-route-id="@item.CustomerId">Pay Debt</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

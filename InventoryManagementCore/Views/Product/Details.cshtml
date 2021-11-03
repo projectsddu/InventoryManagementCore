@@ -1,0 +1,72 @@
+﻿@model InventoryManagementCore.Models.Models.Product
+
+@{
+    var photoPath = "~/Images/" + (Model.ProductPhotoPath ?? "DefaultProductImage.jpg");
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detail Product</h1>
+<hr style="border: 2px solid #BA55D3; " />
+<style>
+    .myImage {
+        border: 1px solid black;
+        padding: 1%;
+        border-radius: 0px;
+        width: 434px;
+        height: 244px;
+        object-fit: fill;
+    }
+    .DLclass dt{
+        width:100%
+    }
+    
+</style>
+<div>
+    <div class="row">
+        <div class="col-5">
+
+            <img class="card-img-top myImage rounded" src="@photoPath" asp-append-version="true" />
+        </div>
+        <div class="col-6" style="padding: 3%;">
+            <dl class="row DLclass">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.ProductName)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.BuyingPrice)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.BuyingPrice)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.SellingPrice)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.SellingPrice)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Category)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Category.CategoryName)
+                </dd>
+
+            </dl>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+

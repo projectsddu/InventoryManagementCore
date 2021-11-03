@@ -1,0 +1,129 @@
+﻿@model InventoryManagementCore.Models.Models.Bill
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .centerMe {
+        display: flex;
+        justify-content: center;
+        align-content: center
+    }
+</style>
+<script>
+    function handlePrint() {
+
+
+    const elem = document.getElementById("printBtn")
+    elem.style.display = "none"
+    window.print()
+    elem.style.display = "inline-block"
+    }
+</script>
+
+<div class="col">
+    <div class="row-12" style="text-align: center;">
+        @*<div class="col-10"></div>*@
+        <button onclick="handlePrint()" id="printBtn" class=" btn btn-success col-2">Print Bill</button>
+    </div>
+    <br />
+    <div class="row view-bill-customer-details">
+        @{
+            var billObj = ViewBag.bill;
+            var customerName = ViewBag.bill.Customer.CustomerName;
+            var customerPhoneNo = ViewBag.bill.Customer.CustomerPhoneNo;
+            var customerAddress = ViewBag.bill.Customer.CustomerAddress;
+            var totalOutstanding = ViewBag.bill.Customer.totalOutstanding;
+            var products = (IEnumerable<InventoryManagementCore.Models.Models.BillItem>)(ViewBag.billItems);
+            var totalQty = 0;
+
+        }
+        <table class="table table-hover">
+            <thead class="bg-secondary text-light">
+                <tr>
+                    <th scope="col"><div class="centerMe">Customer Name</div></th>
+                    <th scope="col"><div class="centerMe">Phone Number</div></th>
+                    <th scope="col"><div class="centerMe">Address</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="centerMe">@customerName</div></td>
+                    <td><div class="centerMe">@customerPhoneNo</div></td>
+                    <td><div class="centerMe">@customerAddress</div></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-hover">
+            <thead class="bg-secondary text-light">
+                <tr>
+                    <th scope="col"><div class="centerMe">Sr.No</div></th>
+                    <th scope="col"><div class="centerMe">Product Name</div></th>
+                    <th scope="col"><div class="centerMe">Quantity</div></th>
+                    <th scope="col"><div class="centerMe">Selling Price</div></th>
+                    <th scope="col"><div class="centerMe">Total</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < products.Count(); i++)
+                {
+                    var item = products.ElementAt(i);
+                    var total = Convert.ToInt32(item.BillItemSellingPrice) * Convert.ToInt32(item.BillItemQuantity);
+                    totalQty += item.BillItemQuantity;
+                    <tr>
+                        <td><div class="centerMe">@Convert.ToInt32(i + 1)</div></td>
+                        <td><div class="centerMe">@item.Product.ProductName</div></td>
+                        <td><div class="centerMe">@item.BillItemQuantity</div></td>
+                        <td><div class="centerMe">@item.BillItemSellingPrice</div></td>
+                        <td><div class="centerMe">@total</div></td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="centerMe"><b>Total Quantity:</b></div>
+                    </td>
+                    <td>
+                        <div class="centerMe"> @totalQty</div>
+                    </td>
+                    <td>
+                        <div class="centerMe"><b>Total Amount:</b></div>
+                    </td>
+                    <td>
+                        <div class="centerMe"> @billObj.BillTotalCost</div>
+                    </td>
+                </tr>
+                <tr style="border-top:2px solid black">
+                    <td>
+                    </td>
+                    <td>
+                        <div class="centerMe"><b>Total Paid</b></div>
+                    </td>
+                    <td>
+                        <div class="centerMe">@billObj.BillTotalPaid</div>
+                    </td>
+
+                    <td>
+                        @if (billObj.BillTotalCost - billObj.BillTotalPaid > 0)
+                        {
+                            <div class="centerMe"><b>Total Remaining</b></div>
+                        }
+                    </td>
+                    <td>
+                        @if (billObj.BillTotalCost - billObj.BillTotalPaid > 0)
+                        {
+                            var totalRem = billObj.BillTotalCost - billObj.BillTotalPaid;
+                            <div class="centerMe">@totalRem</div>
+                        }
+                    </td>
+
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "BillNotFound";
+}
+
+
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h1>BillNotFound</h1>
+    <hr />
+    <h5>
+        Bill with Id = @Model cannot be found.
+    </h5>
+</div>
+
+<a asp-controller="Bill" asp-action="Index" class="btn btn-outline-success" style="width:auto">Click here to the list of all bills</a>
